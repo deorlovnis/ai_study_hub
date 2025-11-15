@@ -1,0 +1,8 @@
+[project]
+name = "latex-ocr-app"
+version = "0.1.0"
+description = "Streamlit frontend for LaTeX-OCR."
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit",
+]
