@@ -102,8 +102,7 @@ This guide will walk you through installing Docker Engine and the NVIDIA Contain
     ```
 
     
-
-## call for action.
+## do you have feedback?
 
 feel free to contact me with any questions
 
