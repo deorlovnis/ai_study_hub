@@ -2,7 +2,6 @@
 name = "rag-workflow-with-eval"
 version = "0.1.0"
 dependencies = [
-    "nest_asyncio",
     "llama-index",
     "llama-index-llms-ollama",
     "llama-index-embeddings-huggingface",
@@ -12,6 +11,6 @@ dependencies = [
     "python-dotenv",
     "pandas",
     "ipykernel",
-    "ragas",
     "langfuse",
+    "tqdm>=4.67.1",
 ]

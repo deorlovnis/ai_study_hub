@@ -1,4 +1,3 @@
-import nest_asyncio
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.settings import Settings
@@ -8,9 +7,6 @@ from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from llama_index.core.response_synthesizers import CompactAndRefine
 
 from config import RAGConfig
-
-# Apply nest_asyncio to allow nested event loops
-# nest_asyncio.apply()
 
 class RetrieverEvent(Event):
     """Result of running retrieval"""
@@ -24,7 +20,6 @@ class RAGWorkflow(Workflow):
         context_window: int = RAGConfig.CONTEXT_WINDOW,
     ):
         super().__init__()
-        # Initialize LLM and embedding model
         self.llm = Ollama(
             model=model_name,
             context_window=context_window,
