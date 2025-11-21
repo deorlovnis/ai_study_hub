@@ -8,5 +8,8 @@ wheels/
 .venv
 
 .cursor/
+.ipynb_checkpoints/
 readme.tmp.md
 .DS_Store
+
+.env
