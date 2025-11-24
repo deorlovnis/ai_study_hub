@@ -1,0 +1,20 @@
+[project]
+name = "speech2text-content-editor"
+version = "0.1.0"
+description = "raw speech to edited text"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "streamlit",
+    "streamlit-mic-recorder",
+    "torch==2.4.1",
+    "torchvision==0.19.1",
+    "nemo-toolkit[asr]==2.2.0",
+    "soundfile>=0.12",
+    "librosa>=0.10",
+    "huggingface_hub>=0.24",
+    "transformers>=4.48.3",
+    "accelerate",
+    "sentencepiece",
+    "cuda-python>=12.3",
+    "numpy<2.0",
+]

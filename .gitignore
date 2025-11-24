@@ -6,7 +6,9 @@ wheels/
 *.egg-info
 
 .venv
+.env
 
 .cursor/
 readme.tmp.md
 .DS_Store
+.ipynb_checkpoints
