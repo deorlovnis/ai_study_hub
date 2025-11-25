@@ -1,47 +1,36 @@
 import streamlit as st
-from streamlit_mic_recorder import mic_recorder
-import os
 
-from src.services import TranscriptionService
+from src.persistence import Repository
+from src.services import PipelineService
 from src.config import Settings
-
-@st.cache_resource
-def load_service(_settings: Settings) -> TranscriptionService:
-    """Loads the transcription service."""
-    return TranscriptionService(_settings)
-
-def process_audio(audio_bytes, service: TranscriptionService, settings: Settings):
-    """
-    Saves, transcribes, and cleans up an audio file.
-    """
-    st.audio(audio_bytes)
-    
-    audio_path = settings.TEMP_AUDIO_PATH
-    with open(audio_path, "wb") as f:
-        f.write(audio_bytes)
-
-    with st.spinner("Transcribing..."):
-        transcription = service.transcribe(audio_path)
-        st.text_area("Transcription", transcription, height=200)
-
-    os.remove(audio_path)
+from ui import transcription_ui, pipeline_ui, workspace_ui
 
 def main():
-    st.title("Speech-to-Text Content Editor")
+    """Main function to initialize and run the application."""
+    st.set_page_config(page_title="AI Content Workflow", layout="wide")
+    st.title("AI Content Workflow Engine")
 
-    settings = Settings()
-    service = load_service(settings)
+    try:
+        settings = Settings()
+        repo = Repository()
+        pipeline_service = PipelineService()
+    except Exception as e:
+        st.error(f"Failed to initialize the application: {e}")
+        return
 
-    st.subheader("Record Audio")
-    audio = mic_recorder(start_prompt="🔴 Record", stop_prompt="⏹️ Stop", key='recorder')
-    if audio:
-        process_audio(audio['bytes'], service, settings)
+    transcription_tab, pipelines_tab, workspace_tab = st.tabs(
+        ["Transcription", "Pipelines", "Workspace"]
+    )
 
-    st.subheader("Upload Audio File")
-    uploaded_file = st.file_uploader("Choose a WAV file", type="wav")
-    if uploaded_file is not None:
-        bytes_data = uploaded_file.getvalue()
-        process_audio(bytes_data, service, settings)
+    with transcription_tab:
+        transcription_ui.render(repo, settings)
+
+    with pipelines_tab:
+        pipeline_ui.render(repo)
+
+    with workspace_tab:
+        workspace_ui.render(repo, pipeline_service)
+
 
 if __name__ == "__main__":
     main()
