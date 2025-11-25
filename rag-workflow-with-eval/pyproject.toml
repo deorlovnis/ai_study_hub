@@ -1,0 +1,16 @@
+[project]
+name = "rag-workflow-with-eval"
+version = "0.1.0"
+dependencies = [
+    "llama-index",
+    "llama-index-llms-ollama",
+    "llama-index-embeddings-huggingface",
+    "sentence-transformers",
+    "torch",
+    "accelerate",
+    "python-dotenv",
+    "pandas",
+    "ipykernel",
+    "langfuse",
+    "tqdm>=4.67.1",
+]
