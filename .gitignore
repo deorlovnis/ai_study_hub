@@ -2,14 +2,16 @@ __pycache__/
 *.py[oc]
 build/
 dist/
+data/
 wheels/
 *.egg-info
 
 .venv
+.env
 
 .cursor/
 .ipynb_checkpoints/
 readme.tmp.md
 .DS_Store
+.ipynb_checkpoints
 
-.env
